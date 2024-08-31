@@ -12,3 +12,4 @@ variable "zone" {
   description = "The zone where the resources will be deployed"
   type        = string
 }
+
