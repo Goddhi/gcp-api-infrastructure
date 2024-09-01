@@ -1,0 +1,5 @@
+resolve Cloud Resource Manager API issue by enabling the API
+gcloud services enable cloudresourcemanager.googleapis.com --project=project-id
+screenshot
+
+
