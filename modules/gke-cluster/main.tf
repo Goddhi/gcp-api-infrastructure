@@ -1,22 +1,68 @@
-resource "google_container_cluster" "primary" {
-  name               = format("%s-%s", var.cluster_name, var.infrastructure_name)
-  location           = var.region
-  initial_node_count = 1
+# resource "google_container_cluster" "primary" {
+#   name               = format("%s-%s", var.cluster_name, var.infrastructure_name)
+#   location           = var.region
+#   initial_node_count = 1
 
+#   network    = var.vpc-name
+#   subnetwork = var.private-subnet-name
+
+#   node_config {
+#     machine_type = var.machine_type
+    # service_account = var.gke_service_account_email
+
+#     oauth_scopes = [
+#       "https://www.googleapis.com/auth/cloud-platform",
+#     ]
+    
+#   }
+
+#   remove_default_node_pool = true
+#   node_locations           = [var.zone]
+# }
+
+  # node_pool {
+
+  # }
+  # # Node pool configuration
+  # node_config {
+  #   machine_type = "e2-medium"
+  #   oauth_scopes = [
+  #     "https://www.googleapis.com/auth/cloud-platform"
+  #   ]
+  #   disk_size_gb = 100
+  #   preemptible  = false
+
+
+
+  #   shielded_instance_config {
+  #     enable_secure_boot          = true
+  #     enable_integrity_monitoring = true
+  #   }
+  # }
+
+
+resource "google_container_cluster" "primary" {
+  name     = format("%s-%s", var.cluster_name, var.infrastructure_name)
+  location = var.region
+
+  # Networking
   network    = var.vpc-name
   subnetwork = var.private-subnet-name
 
-  node_config {
-    machine_type = var.machine_type
-    service_account = var.gke_service_account_email
-
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/cloud-platform",
-    ]
+  # Enable private cluster
+  private_cluster_config {
+    enable_private_nodes    = true
+    enable_private_endpoint = true
+    master_ipv4_cidr_block  = var.master_ipv4_cidr_block
   }
 
-  remove_default_node_pool = true
-  node_locations           = [var.zone]
+
+  # IP allocation for Pods and Services
+  ip_allocation_policy {
+    cluster_secondary_range_name  = var.secondary_ip_range_pods_name
+    services_secondary_range_name = var.secondary_ip_range_services_name
+  }
+    deletion_protection = false
 }
 
 resource "google_container_node_pool" "primary_nodes" {
@@ -25,9 +71,13 @@ resource "google_container_node_pool" "primary_nodes" {
   location   = var.region
   node_count = 1
 
+
   node_config {
     machine_type = var.machine_type
-
+    service_account = var.gke_service_account_email
+    tags = [var.node-pool-name, var.infrastructure_name]
+    disk_size_gb    = var.disk_size_gb
+    
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform",
     ]
@@ -37,6 +87,9 @@ resource "google_container_node_pool" "primary_nodes" {
     auto_repair  = true
     auto_upgrade = true
   }
+
+    autoscaling {
+    min_node_count = var.min_node_count
+    max_node_count = var.max_node_count
+  }
 }
-
-

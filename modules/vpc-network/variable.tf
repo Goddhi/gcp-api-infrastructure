@@ -85,3 +85,24 @@ variable "internal_source_ranges" {
   description = "Internal source range allowed"
   type        = list(string)
 }
+
+variable "secondary_ip_range_services_cidr" {
+    type = string
+    description = "ip range for gke services" 
+}
+
+variable "secondary_ip_range_pods_cidr" {
+    type = string
+    description = " secondary ip range for gke pods" 
+}
+
+variable "secondary_ip_range_services_name" {
+    type = string
+    description = " secondary ip range name for gke services" 
+}
+
+variable "secondary_ip_range_pods_name" {
+    type = string
+    description = " secondary ip range name for gke pods" 
+}
+

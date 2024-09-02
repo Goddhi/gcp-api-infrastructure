@@ -1,11 +1,29 @@
-output "network_self_link" {
-  value       = google_compute_subnetwork.private.self_link
-  description = "The self_link of the first private subnet"
+output "network_id" {
+  value       = google_compute_subnetwork.private.id
+  description = "The id of the private subnet"
 }
 
 
-output "subnet_self_link" {
-  value = google_compute_network.vpc-network.self_link
-  description = "The vpc network self link"
+output "subnet_id" {
+  value = google_compute_network.vpc-network.id
+  description = "The vpc network id"
+}
+
+
+
+output "secondary_ip_range_services_name" {
+  value = google_compute_subnetwork.subnet.secondary_ip_range[0].range_name
+}
+
+output "secondary_ip_range_services_cidr" {
+  value = google_compute_subnetwork.subnet.secondary_ip_range[0].ip_cidr_range
+}
+
+output "secondary_ip_range_pods_name" {
+  value = google_compute_subnetwork.subnet.secondary_ip_range[1].range_name
+}
+
+output "secondary_ip_range_pods_cidr" {
+  value = google_compute_subnetwork.subnet.secondary_ip_range[1].ip_cidr_range
 }
 

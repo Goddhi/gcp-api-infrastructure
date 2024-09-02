@@ -49,6 +49,21 @@ node-pool-name = "primary-node-pool"
 
 machine_type = "e2-medium"
 
+secondary_ip_range_services_cidr = "192.168.0.0/24"
+
+secondary_ip_range_pods_cidr = "192.168.1.0/24"
+
+secondary_ip_range_pods_name = "pods-range"
+
+secondary_ip_range_services_name = "services-range"
+
+master_ipv4_cidr_block = "10.0.1.0/28"
+
+disk_size_gb = "10"
+
+min_node_count = "1"
+
+max_node_count = "2"
 # destination_cidr_block = "0.0.0.0/0"
 
 

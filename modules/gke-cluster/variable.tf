@@ -45,3 +45,42 @@ variable "gke_service_account_email" {
 }
 
 
+variable "secondary_ip_range_services_name" {
+  description = "The name of the secondary IP range for services"
+  type        = string
+}
+
+variable "secondary_ip_range_services_cidr" {
+  description = "The CIDR range of the secondary IP range for services"
+  type        = string
+}
+
+variable "secondary_ip_range_pods_name" {
+  description = "The name of the secondary IP range for pods"
+  type        = string
+}
+
+variable "secondary_ip_range_pods_cidr" {
+    type = string
+    description = " secondary ip range for gke pods" 
+}
+
+variable "master_ipv4_cidr_block" {
+  type = string
+  description = "master ip adress"
+}
+
+variable "disk_size_gb" {
+    type = string
+  description = "node disk size"
+}
+
+variable "min_node_count" {
+    type = string
+  description = "node disk size"
+}
+
+variable "max_node_count" {
+    type = string
+  description = "node disk size"
+}
