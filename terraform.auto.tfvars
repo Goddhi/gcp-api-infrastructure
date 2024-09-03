@@ -67,18 +67,17 @@ authorized-net-cidr = "10.0.0.0/16"
 
 authorized-net-name = "master-authorized-network-name"
 
-gke_namespace_name = "gcp_api_infra_namespace"
+namespace-name = "gcp-api-infra-namespace"
 
-deployment_name = "gcp_api_infra_deployment"
+deploymentName = "gcp_api_infra_deployment"
 
-app_name = "gcp_api_infra_app"
+app-name = "gcp_api_infra_app"
 
-container_name = "gcp_api_infra_container"
+container-name = "gcp_api_infra_container"
 
-app_image = "gcp_api_infra_app_image"
+app-image = "gcp_api_infra_app_image"
 
-deployment_service_name = "gcp_infra"
+service-name = "gcp_infra"
 
-deployment_service_type = "LoadBalancer"
-
+service-type = "LoadBalancer"
 

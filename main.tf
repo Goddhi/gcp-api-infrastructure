@@ -63,13 +63,13 @@ module "gke-cluster" {
   authorized-net-cidr                 = var.authorized-net-cidr
   authorized-net-name                 = var.authorized-net-name
   disk_type                           = var.disk_type
-  gke_namespace_name                  =   var.gke_namespace_name 
-  deployment_name                     = var.deployment_name
-  app_name                            = var.app_name
-  container_name                      = var.container_name
-  app_image                           = var.app_image
-  deployment_service_name             = var.deployment_service_name
-  deployment_service_type             = var.deployment_service_type
+  namespace-name                      = var.namespace-name 
+  deploymentName                     = var.deploymentName
+  app-name                            = var.app-name
+  container-name                      = var.container-name
+  app-image                           = var.app-image
+  service-name                        = var.service-name
+  service-type                        = var.service-type
   
 }
 

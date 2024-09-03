@@ -101,37 +101,37 @@ variable "authorized-net-name" {
 }
 
 
-variable "gke_namespace_name" {
+variable "namespace-name" {
     type = string
   description = "gke namespace name" 
 }
 
-variable "deployment_name" {
+variable "deploymentName" {
     type = string
     description = "deployment name" 
 }
 
-variable "app_name" {
+variable "app-name" {
     type = string
     description = "app name" 
 }
 
-variable "container_name" {
+variable "container-name" {
     type = string
     description = "container name" 
 }
 
-variable "app_image" {
+variable "app-image" {
       type = string
     description = "app image " 
 }
 
-variable "deployment_service_name" {
+variable "service-name" {
       type = string
     description = "service_name " 
 }
 
-variable "deployment_service_type" {
+variable "service-type" {
       type = string
     description = "app image" 
 }

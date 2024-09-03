@@ -1,12 +1,12 @@
 resource "kubernetes_namespace" "gcp_api_infra_namespace" {
   metadata {
-    name = var.gke_namespace_name
+    name = var.namespace-name
   }
 }
 
 resource "kubernetes_deployment" "gcp_api_infa_deployment" {
   metadata {
-    name      = var.deployment_name
+    name      = "gcp-api-infra-deploy"
     namespace = kubernetes_namespace.gcp_api_infra_namespace.metadata[0].name
   }
 
@@ -15,21 +15,21 @@ resource "kubernetes_deployment" "gcp_api_infa_deployment" {
 
     selector {
       match_labels = {
-        app = var.app_name
+        app = var.app-name
       }
     }
 
     template {
       metadata {
         labels = {
-          app = var.app_name
+          app = var.app-name
         }
       }
 
       spec {
         container {
-          name  = var.container_name
-          image = var.app_image
+          name  = var.container-name
+          image = var.app-image
 
           port {
             container_port = 80
@@ -42,12 +42,12 @@ resource "kubernetes_deployment" "gcp_api_infa_deployment" {
 
 resource "kubernetes_service" "gcp_api_infra_service" {
   metadata {
-    name      = var.deployment_service_name
+    name      = "gcp-api-infra-service"
     namespace = kubernetes_namespace.gcp_api_infra_namespace.metadata[0].name
   }
   spec {
     selector = {
-      app = var.app_name
+      app = var.app-name
     }
 
     port {
@@ -55,7 +55,7 @@ resource "kubernetes_service" "gcp_api_infra_service" {
       target_port = 80
     }
 
-    type = var.deployment_service_type
+    type = var.service-type
   }
 }
 
@@ -76,7 +76,7 @@ resource "kubernetes_ingress" "api_ingress" {
           path     = "/"
         #   path_type = "Prefix"
           backend {
-            service_name = var.deployment_service_name
+            service_name = "gcp-api-infra-service"
             service_port = 80
           }
         }
