@@ -28,5 +28,9 @@ resource "google_compute_firewall" "allow_internal" {
   }
   
   source_ranges = var.internal_source_ranges
+
+  depends_on = [
+    google_compute_network.vpc-network
+  ]
 }
 

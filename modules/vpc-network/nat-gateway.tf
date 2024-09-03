@@ -5,4 +5,8 @@ resource "google_compute_router_nat" "nat_gateway" {
 
   nat_ip_allocate_option = var.nat_ip_allocate_option
   source_subnetwork_ip_ranges_to_nat = var.source_subnetwork_ip_ranges_to_nat
+
+    depends_on = [
+      google_compute_network.vpc-network
+  ]
 }

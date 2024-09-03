@@ -70,17 +70,69 @@ variable "master_ipv4_cidr_block" {
   description = "master ip adress"
 }
 
+variable "disk_type" {
+  type = string
+  description = "node disk type"
+}
+
 variable "disk_size_gb" {
-    type = string
+    type = number
   description = "node disk size"
 }
 
 variable "min_node_count" {
-    type = string
-  description = "node disk size"
+    type = number
+  description = "min node count"
 }
 
 variable "max_node_count" {
-    type = string
-  description = "node disk size"
+    type = number
+  description = " max node count"
 }
+
+variable "authorized-net-cidr" {
+    type = string
+  description = "master_authorized_networks_config cidr"
+}
+
+variable "authorized-net-name" {
+    type = string
+  description = "master_authorized_networks_config name" 
+}
+
+
+variable "gke_namespace_name" {
+    type = string
+  description = "gke namespace name" 
+}
+
+variable "deployment_name" {
+    type = string
+    description = "deployment name" 
+}
+
+variable "app_name" {
+    type = string
+    description = "app name" 
+}
+
+variable "container_name" {
+    type = string
+    description = "container name" 
+}
+
+variable "app_image" {
+      type = string
+    description = "app image " 
+}
+
+variable "deployment_service_name" {
+      type = string
+    description = "service_name " 
+}
+
+variable "deployment_service_type" {
+      type = string
+    description = "app image" 
+}
+

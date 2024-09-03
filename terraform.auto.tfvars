@@ -13,11 +13,7 @@ routing_mode = "REGIONAL"
 
 
 # gke_service_account_name = "gcp-api-infrastructure"
-# tags = {
-#   Owner-Email     = "godwillcharles22@gmail.com"
-#   Managed-By      = "Terraform"
-#   Billing-Account = "1234567890"
-# }
+
 
 
 
@@ -47,7 +43,7 @@ cluster_name = "gke-cluster"
 
 node-pool-name = "primary-node-pool"
 
-machine_type = "e2-medium"
+machine_type = "e2-small"
 
 secondary_ip_range_services_cidr = "192.168.0.0/24"
 
@@ -57,33 +53,32 @@ secondary_ip_range_pods_name = "pods-range"
 
 secondary_ip_range_services_name = "services-range"
 
-master_ipv4_cidr_block = "10.0.1.0/28"
+master_ipv4_cidr_block = "172.16.0.0/28"
 
-disk_size_gb = "10"
+disk_type = "pd-standard"  
 
-min_node_count = "1"
+disk_size_gb = 20
 
-max_node_count = "2"
-# destination_cidr_block = "0.0.0.0/0"
+min_node_count = 1
+
+max_node_count = 2
+
+authorized-net-cidr = "10.0.0.0/16"
+
+authorized-net-name = "master-authorized-network-name"
+
+gke_namespace_name = "gcp_api_infra_namespace"
+
+deployment_name = "gcp_api_infra_deployment"
+
+app_name = "gcp_api_infra_app"
+
+container_name = "gcp_api_infra_container"
+
+app_image = "gcp_api_infra_app_image"
+
+deployment_service_name = "gcp_infra"
+
+deployment_service_type = "LoadBalancer"
 
 
-
-
-# Ensure to change this to your acccount number
-# account_no = "123456789"
-
-
-# ### -------- ALB -------- ###
-# ip_address_type     = "ipv4"
-# load_balancer_type  = "application"
-# port                = 80
-# protocol            = "HTTP"
-# company_name        = "ACS"
-# interval            = 10
-# path                = "/healthstatus"
-# timeout             = 5
-# healthy_threshold   = 5
-# unhealthy_threshold = 2
-# target_type         = "instance"
-# default_action_type = "forward"
-# priority            = 99

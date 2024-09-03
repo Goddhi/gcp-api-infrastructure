@@ -1,5 +1,5 @@
 provider "google" {
-  credentials = file("gcp-api-infrastructure.json")
+  credentials = file("api-sc.json")
   project     = var.project
   region      = var.region
   zone        = var.zone
@@ -42,24 +42,34 @@ module "iam" {
 }
 
 module "gke-cluster" {
-  source           = "./modules/gke-cluster"
-  vpc-name          =    module.vpc-network.network_id
-  private-subnet-name   = module.vpc-network.subnet_id
-  cluster_name     = var.cluster_name
-  region           = var.region
-  zone             = var.zone
-  infrastructure_name = var.infrastructure_name
-  node-pool-name =    var.node-pool-name
-  machine_type = var.machine_type
-  gke_service_account_email = module.iam.gke_service_account_email
-  secondary_ip_range_services_name = module.vpc-network.secondary_ip_range_services_name
-  secondary_ip_range_services_cidr = module.vpc-network.secondary_ip_range_services_cidr
-  secondary_ip_range_pods_name     = module.vpc-network.secondary_ip_range_pods_name
-  secondary_ip_range_pods_cidr     = module.vpc-network.secondary_ip_range_pods_cidr
-  master_ipv4_cidr_block  = var.master_ipv4_cidr_block
-  disk_size_gb = var.disk_size_gb
-  min_node_count = var.min_node_count
-  max_node_count = var.max_node_count
+  source                              = "./modules/gke-cluster"
+  vpc-name                            =    module.vpc-network.network_id
+  private-subnet-name                 = module.vpc-network.subnet_id
+  cluster_name                        = var.cluster_name
+  region                              = var.region
+  zone                                = var.zone
+  infrastructure_name                 = var.infrastructure_name
+  node-pool-name                      = var.node-pool-name
+  machine_type                        = var.machine_type
+  gke_service_account_email           = module.iam.gke_service_account_email
+  secondary_ip_range_services_name    = module.vpc-network.secondary_ip_range_services_name
+  secondary_ip_range_services_cidr    = module.vpc-network.secondary_ip_range_services_cidr
+  secondary_ip_range_pods_name        = module.vpc-network.secondary_ip_range_pods_name
+  secondary_ip_range_pods_cidr        = module.vpc-network.secondary_ip_range_pods_cidr
+  master_ipv4_cidr_block              = var.master_ipv4_cidr_block
+  disk_size_gb                        =  var.disk_size_gb
+  min_node_count                      = var.min_node_count
+  max_node_count                      = var.max_node_count
+  authorized-net-cidr                 = var.authorized-net-cidr
+  authorized-net-name                 = var.authorized-net-name
+  disk_type                           = var.disk_type
+  gke_namespace_name                  =   var.gke_namespace_name 
+  deployment_name                     = var.deployment_name
+  app_name                            = var.app_name
+  container_name                      = var.container_name
+  app_image                           = var.app_image
+  deployment_service_name             = var.deployment_service_name
+  deployment_service_type             = var.deployment_service_type
   
 }
 
