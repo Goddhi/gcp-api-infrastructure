@@ -5,3 +5,6 @@ gcloud compute routers nats delete --router=nat-router-gcp-api-infrastructure - 
 
 nat router
 firewall rules
+
+
+.........
